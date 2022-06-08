@@ -4,9 +4,9 @@ import prisma from './db/prisma'
 
 const auth = {
     secret: "super secret",
-
-    getToken() {
-        let token = jwt.sign({ user: auth.username }, auth.secret, { expiresIn: 100 })
+    getToken(username) {
+       
+        let token = jwt.sign({ user: username }, auth.secret, { expiresIn: 100 })
         
         return token
     },
@@ -46,8 +46,10 @@ const auth = {
             await prisma.$disconnect()
           })
 
-        if (user.username === username && user.password === password) {
-            let token = auth.getToken()
+        if(!user) return res.status(400).json({error: "Invalid User or Password"})
+
+        if (username === user.username  &&  password === user.password) {
+            let token = auth.getToken(user.username)
             res.cookie('token', token)
             res.status(200).json({ msg: "ok", token })
             return

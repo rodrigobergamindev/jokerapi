@@ -19,7 +19,7 @@ async function createUserController(request, response){
           }
        
     } catch (error) {
-        return response.json(JSON.stringify(error))
+        return response.json(error)
     }
 
    
