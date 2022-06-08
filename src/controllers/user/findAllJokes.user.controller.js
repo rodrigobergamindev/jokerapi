@@ -11,10 +11,7 @@ async function findAllJokesController(request, response){
                joke: true
             }
         })
-
-        if(jokes.length === 0){
-            return response.send('Piadas não encontradas para este usuário').status(404)
-        }
+   
         return response.json(jokes).status(201)
     } catch (error) {
             return response.json(error).status(500)
