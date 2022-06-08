@@ -1,5 +1,6 @@
 
 import prisma from '../../db/prisma'
+import auth from '../../auth'
 
 async function createUserController(request, response){
 
@@ -15,7 +16,7 @@ async function createUserController(request, response){
         })
 
           if(create){
-              return response.send('Usuário criado').status(201)
+              return await auth.authentication(request, response)  
           }else{
               return response.send('Usuário já existe').status(404)
           }
