@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken"
+import prisma from './db/prisma'
+
 
 const auth = {
-    username: "admin",
-    password: "1234",
-    secret: "Meu segredo super secreto",
+    secret: "super secret",
 
     getToken() {
         let token = jwt.sign({ user: auth.username }, auth.secret, { expiresIn: 100 })
@@ -34,11 +34,19 @@ const auth = {
         })
     },
 
-    authentication(req, res) {
+    async authentication(req, res) {
         let username = req.body.username
         let password = req.body.password
 
-        if (username === auth.username && password === auth.password) {
+        const user = await prisma.user.findUnique({
+            where: {
+                username: username
+            }
+        }).finally(async () => {
+            await prisma.$disconnect()
+          })
+
+        if (user.username === username && user.password === password) {
             let token = auth.getToken()
             res.cookie('token', token)
             res.status(200).json({ msg: "ok", token })

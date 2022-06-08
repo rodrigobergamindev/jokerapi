@@ -16,5 +16,13 @@ model Joke {
   title String
   description String
   createdAt DateTime @default(now())
-  author String
+  author User @relation(fields:[authorId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  authorId String
+}
+
+model User {
+  id String @id @default(uuid())
+  username String @unique
+  password String
+  joke Joke[]
 }
