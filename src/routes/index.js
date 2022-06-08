@@ -4,7 +4,7 @@ import {userRoutes} from './user.routes'
 
 const router = Router()
 
-router.use('/jokes', jokeRoutes)
+router.use('/', jokeRoutes)
 router.use('/user', userRoutes)
 
 
