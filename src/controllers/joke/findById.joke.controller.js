@@ -10,6 +10,13 @@ async function findByIdJokeController(request, response){
             const joke = await prisma.joke.findUnique({
                 where: {
                     id: request.params.id
+                },
+                include: {
+                    author: {
+                        select: {
+                            username: true
+                        }
+                    }
                 }
             }).finally(async () => {
                 await prisma.$disconnect()

@@ -6,7 +6,7 @@ import {router} from './routes/index'
 import auth from './auth'
 import cookieParser from 'cookie-parser'
 import swaggerUi from 'swagger-ui-express'
-import swaggerDocument from './swagger.json' assert {type: 'json'};
+import swaggerDocument from './swagger.json'
 dotenv.config()
 
   

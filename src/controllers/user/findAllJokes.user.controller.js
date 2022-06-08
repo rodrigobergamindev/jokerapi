@@ -7,8 +7,16 @@ async function findAllJokesController(request, response){
             where: {
                 username
             },
-            select: {
-               joke: true
+            include: {
+                joke: {
+                    include: {
+                        author: {
+                            select: {
+                                username: true
+                            }
+                        }
+                    }
+                }
             }
         })
        
