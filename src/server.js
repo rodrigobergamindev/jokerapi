@@ -20,6 +20,8 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(router)
 app.post('/auth', auth.authentication)
 
-app.listen(process.env.PORT, function() {
-  console.log(`Servidor rodando na porta ${process.env.PORT}`)
+const PORT = process.env.PORT || 80
+
+app.listen(PORT, function() {
+  console.log(`Servidor rodando na porta ${PORT}`)
 });
