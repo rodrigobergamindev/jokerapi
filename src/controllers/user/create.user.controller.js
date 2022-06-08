@@ -7,6 +7,14 @@ async function createUserController(request, response){
     try {
        const username = request.body.username
        const password = request.body.password
+       
+       const findUser = prisma.user.findUnique({
+           where: {
+               username
+           }
+       })
+
+       if(findUser) return response.send('Usuário já existe').status(409)
    
         const create = await prisma.user.create({
             data: {
@@ -17,8 +25,6 @@ async function createUserController(request, response){
 
           if(create){
               return await auth.authentication(request, response)  
-          }else{
-              return response.send('Usuário já existe').status(404)
           }
        
     } catch (error) {
