@@ -6,7 +6,7 @@ const auth = {
     secret: "super secret",
     getToken(username) {
        
-        let token = jwt.sign({ user: username }, auth.secret, { expiresIn: 100 })
+        let token = jwt.sign({ user: username }, auth.secret, { expiresIn: 500 })
         
         return token
     },
