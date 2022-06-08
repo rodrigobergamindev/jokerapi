@@ -4,32 +4,33 @@ import prisma from '../../db/prisma'
 async function deleteUserController(request, response){
     
     try {
+        const username = request.params.username
+       if(username){
         
-       const findUser = await prisma.user.findUnique({
-           where: {
-               id: request.params.id
-           }
-       })
-
-       if(!findUser){
-           return response.send('Piada não encontrada').status(500)
-       }
-       
-       const deleteUser = await prisma.user.delete({
+        const findUser = await prisma.user.findUnique({
             where: {
-                id: request.params.id
+                username: username
             }
-        }).finally(async () => {
-            await prisma.$disconnect()
-          })
+        })
+ 
+        if(!findUser){
+            return response.send('Usuário não encontrado').status(404)
+        }
+        const deleteUser = await prisma.user.delete({
+             where: {
+                 username: username
+             }
+         }).finally(async () => {
+             await prisma.$disconnect()
+           })
 
         if(deleteUser){
             return response.send('Usuário deletado').status(201)
         }
-    
+       }
+         
     } catch (error) {
-        console.log(error)
-        return response.send('Ocorreu um erro').status(404)
+        return response.send('Usuário não encontrado').status(404)
     }
 
    

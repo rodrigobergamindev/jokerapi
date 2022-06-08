@@ -16,9 +16,12 @@ async function createUserController(request, response){
 
           if(create){
               return response.send('Usuário criado').status(201)
+          }else{
+              return response.send('Usuário já existe').status(404)
           }
        
     } catch (error) {
+        console.log(error)
         return response.json(error)
     }
 

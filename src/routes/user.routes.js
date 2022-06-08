@@ -13,13 +13,13 @@ userRoutes.post("/", (request, response) => {
     return createUserController(request,response)
 })
 
-userRoutes.delete("/:id", auth.middlewareAuth, (request, response) => {
+userRoutes.delete("/:username", auth.middlewareAuth, (request, response) => {
     
     return deleteUserController(request, response)
 })
 
 
-userRoutes.get("/:id/jokes", (request, response) => {
+userRoutes.get("/:username/jokes", (request, response) => {
     
     return findAllJokesController(request, response)
 })

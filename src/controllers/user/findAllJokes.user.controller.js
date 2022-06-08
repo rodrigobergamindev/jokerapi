@@ -2,10 +2,10 @@ import prisma from '../../db/prisma'
 
 async function findAllJokesController(request, response){
     try {
-        const id = request.params.id
+        const username = request.params.username
         const jokes = await prisma.user.findUnique({
             where: {
-                id
+                username
             },
             select: {
                joke: true

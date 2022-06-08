@@ -13,12 +13,13 @@ async function createJokeController(request, response){
         
        
        if(token){
-           const username = token.payload.user
-           
+        const username = token.payload.user
+        const {category, title, description} = request.body
         const create = await prisma.joke.create({
             data: {
-                description: 'anything',
-                title: 'anything', 
+                category,
+                title,
+                description,
                 author: {
                     connect: {
                         username: username
@@ -29,7 +30,7 @@ async function createJokeController(request, response){
         }).finally(async () => {
             await prisma.$disconnect()
           })
-         console.log(create)
+         
           if(create){
               return response.send('Piada criada').status(201)
           }
