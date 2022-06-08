@@ -1,0 +1,122 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title":"JokerAPI Documentation",
+        "description": "This is an API for jokes",
+        "version": "1.0.0",
+        "contact": {
+            "email": "rodrigobergamindev@gmail.com"
+        }
+    },
+    "paths": {
+        "/user": {
+            "post": {
+                "tags": ["User"],
+                "summary": "Create a register",
+                "description": "Create a new user",
+                "requestBody": {
+                    "content" : {
+                        "application/json": {
+                            "schema": {
+                                "type":"object",
+                                "properties": {
+                                    "username": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "username": "rbdev",
+                                    "password" : "1245@sk"
+                                }
+                            }
+                           
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "msg": {
+                                            "type": "string"
+                                        },
+                                        "token": {
+                                            "type": "string"
+                                        }
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "User already exist"
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["User"],
+                "summary": "Delete an user",
+                "description": "Delete an user",
+                "requestParams": {
+                    "username":"string"
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                        },
+                    "404": {
+                        "description": "User not found"
+                    }
+                }
+            },
+            "get": {
+                "tags": ["User"],
+                "summary": "List all jokes for user",
+                "description": "List all jokes for user",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type":"array",
+                                    "items": {
+                                        "type": "array",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "title": {
+                                                "type": "string"
+                                            },
+                                            "category": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "createdAt": {
+                                                "type":"date"
+                                            },
+                                            "authorId": {
+                                                "type":"string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

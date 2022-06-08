@@ -5,6 +5,8 @@ import dotenv from 'dotenv'
 import {router} from './routes/index'
 import auth from './auth'
 import cookieParser from 'cookie-parser'
+import swaggerUi from 'swagger-ui-express'
+import swaggerDocument from './swagger.json'
 dotenv.config()
 
 
@@ -14,6 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(cookieParser())
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(router)
 app.post('/auth', auth.authentication)
 
