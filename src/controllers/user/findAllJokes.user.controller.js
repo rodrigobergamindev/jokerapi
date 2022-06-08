@@ -11,8 +11,8 @@ async function findAllJokesController(request, response){
                joke: true
             }
         })
-   
-        return response.json(jokes).status(201)
+       
+        return response.json(jokes.joke).status(201)
     } catch (error) {
             return response.json(error).status(500)
     }
