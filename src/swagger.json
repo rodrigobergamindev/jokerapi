@@ -186,7 +186,7 @@
                 }
             }
         },
-        "/jokes":{
+        "/":{
             "post": {
                 "tags": ["Jokes"],
                 "summary": "Create a new joke",
@@ -267,7 +267,7 @@
                 }
             }
         },
-        "/jokes/{id}": {
+        "/{id}": {
             "delete": {
                 "tags": ["Jokes"],
                 "summary": "Delete an joke",
