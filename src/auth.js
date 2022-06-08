@@ -45,7 +45,7 @@ const auth = {
         }).finally(async () => {
             await prisma.$disconnect()
           })
-
+          
         if(!user) return res.status(400).json({error: "Invalid User or Password"})
 
         if (username === user.username  &&  password === user.password) {

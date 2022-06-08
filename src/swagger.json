@@ -9,6 +9,59 @@
         }
     },
     "paths": {
+        "/auth": {
+            "post": {
+                "tags": ["User"],
+                "summary": "Authenticate user",
+                "description": "Authenticate user",
+                "requestBody": {
+                    "content" : {
+                        "application/json": {
+                            "schema": {
+                                "type":"object",
+                                "properties": {
+                                    "username": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "username": "rbdev",
+                                    "password" : "1245@sk"
+                                }
+                            }
+                           
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "msg": {
+                                            "type": "string"
+                                        },
+                                        "token": {
+                                            "type": "string"
+                                        }
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid user or password"
+                    }
+                }
+            }
+        },
         "/user": {
             "post": {
                 "tags": ["User"],
@@ -60,14 +113,20 @@
                         "description": "User already exist"
                     }
                 }
-            },
+            }
+        },
+        "/user/{username}": {
             "delete": {
                 "tags": ["User"],
                 "summary": "Delete an user",
                 "description": "Delete an user",
-                "requestParams": {
-                    "username":"string"
-                },
+                "parameters":[
+                    {
+                        "name":"username",
+                        "in":"path",
+                        "type":"string"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Success"
@@ -76,11 +135,20 @@
                         "description": "User not found"
                     }
                 }
-            },
+            }
+        },
+        "/user/{username}/jokes":{
             "get": {
                 "tags": ["User"],
                 "summary": "List all jokes for user",
                 "description": "List all jokes for user",
+                "parameters":[
+                    {
+                        "name":"username",
+                        "in":"path",
+                        "type":"string"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -89,7 +157,7 @@
                                 "schema": {
                                     "type":"array",
                                     "items": {
-                                        "type": "array",
+                                        "type": "object",
                                         "properties": {
                                             "id": {
                                                 "type": "string"
@@ -104,7 +172,7 @@
                                                 "type": "string"
                                             },
                                             "createdAt": {
-                                                "type":"date"
+                                                "type":"string"
                                             },
                                             "authorId": {
                                                 "type":"string"
@@ -112,6 +180,163 @@
                                         }
                                     }
                                 }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/jokes":{
+            "post": {
+                "tags": ["Jokes"],
+                "summary": "Create a new joke",
+                "description": "Create a new joke",
+                "requestBody": {
+                    "content" : {
+                        "application/json": {
+                            "schema": {
+                                "type":"object",
+                                "properties": {
+                                    "category": {
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "category": "religion",
+                                    "title" : "lorem ipsum",
+                                    "description": "something description"
+                                }
+                            }
+                           
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Failure"
+                    }
+                }
+            },
+            "get": {
+                "tags": ["Jokes"],
+                "summary": "List all jokes",
+                "description": "List all jokes",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type":"array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "title": {
+                                                "type": "string"
+                                            },
+                                            "category": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "createdAt": {
+                                                "type":"string"
+                                            },
+                                            "authorId": {
+                                                "type":"string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/jokes/{id}": {
+            "delete": {
+                "tags": ["Jokes"],
+                "summary": "Delete an joke",
+                "description": "Delete an joke",
+                "parameters":[
+                    {
+                        "name":"id",
+                        "in":"path",
+                        "type":"string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                        },
+                    "404": {
+                        "description": "Joke not found"
+                    }
+                }
+            },
+            "get": {
+                "tags": ["Jokes"],
+                "summary": "Get joke by id",
+                "description": "Get joke by id",
+                "parameters":[
+                    {
+                        "name":"id",
+                        "in":"path",
+                        "type":"string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type":"object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "title": {
+                                                "type": "string"
+                                            },
+                                            "category": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "createdAt": {
+                                                "type":"string"
+                                            },
+                                            "authorId": {
+                                                "type":"string"
+                                            }
+                                        },
+                                        "example": {
+     
+                                            "id": "62a0d2abb8874bb9680b0215",
+                                            "title": "lorem ipsum",
+                                            "category": "religion",
+                                            "description": "something description",
+                                            "createdAt": "2022-06-08T16:47:39.036Z",
+                                            "authorId": "62a0ce7d2dd01fd5cd120943"  
+                                        }
+                                }
+
                             }
                         }
                     }
