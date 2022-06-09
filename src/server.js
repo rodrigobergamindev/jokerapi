@@ -26,6 +26,7 @@ app.use((request, response, next) => {
   response.setHeader('Access-Control-Allow-Credentials', true);
   response.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
   response.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  next()
 })
 app.use(cookieParser())
 
