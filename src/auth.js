@@ -50,7 +50,7 @@ const auth = {
 
         if (username === user.username  &&  password === user.password) {
             let token = auth.getToken(user.username)
-            res.cookie('token', token, { sameSite: 'None', secure: true})
+            res.cookie('token', token, { sameSite: 'lax'})
             res.status(200).json({ msg: "ok", token })
             return
         } else {
