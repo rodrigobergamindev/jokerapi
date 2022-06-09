@@ -19,7 +19,7 @@ userRoutes.delete("/:username", auth.middlewareAuth, (request, response) => {
 })
 
 
-userRoutes.get("/:username/jokes", (request, response) => {
+userRoutes.get("/:username/jokes",auth.middlewareAuth, (request, response) => {
     
     return findAllJokesController(request, response)
 })
