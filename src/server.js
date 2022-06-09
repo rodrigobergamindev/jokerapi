@@ -22,6 +22,11 @@ app.use(cors({
     "Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"
   ]
 })); 
+app.use((request, response, next) => {
+  response.setHeader('Access-Control-Allow-Credentials', true);
+  response.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+  response.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+})
 app.use(cookieParser())
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
