@@ -20,9 +20,9 @@ async function findAllJokesController(request, response){
             }
         })
        
-        return response.json(jokes.joke).status(200)
+        return response.status(200).json(jokes.joke)
     } catch (error) {
-            return response.json(error).status(500)
+            return response.status(500).json(error)
     }
 }
 

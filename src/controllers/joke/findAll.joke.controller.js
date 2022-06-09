@@ -14,9 +14,9 @@ async function findAllJokeController(request, response){
             await prisma.$disconnect()
           })
         console.log('bateu aqui')
-        return response.json(jokes).status(201)
+        return response.status(201).json(jokes)
     } catch (error) {
-            return response.json(error).status(500)
+            return response.status(500).json(error)
     }
 }
 

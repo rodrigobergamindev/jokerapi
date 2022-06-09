@@ -26,12 +26,12 @@ async function deleteUserController(request, response){
 
         if(deleteUser){
             response.clearCookie('token')
-            return response.send('Usuário deletado').status(200)
+            return response.status(200).send('Usuário deletado')
         }
        }
          
     } catch (error) {
-        return response.send('Usuário não encontrado').status(404)
+        return response.status(404).send('Usuário não encontrado')
     }
 
    

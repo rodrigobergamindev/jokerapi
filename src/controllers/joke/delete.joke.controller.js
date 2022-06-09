@@ -28,7 +28,7 @@ async function deleteJokeController(request, response){
        })
 
        if(!findJoke){
-           return response.send('Piada não encontrada').status(404)
+           return response.status(404).send('Piada não encontrada')
        }
 
        if(findJoke.author.username !== author) return response.send('Você não pode realizar esta ação').status(400)
@@ -42,12 +42,12 @@ async function deleteJokeController(request, response){
           })
 
         if(deleteJoke){
-            return response.send('Piada deletada').status(201)
+            return response.status(201).send('Piada deletada')
         }
     
     } catch (error) {
         console.log(error)
-        return response.send('Ocorreu um erro').status(404)
+        return response.status(404).send('Ocorreu um erro')
     }
 
    

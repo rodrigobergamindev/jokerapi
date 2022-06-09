@@ -14,7 +14,7 @@ async function createJokeController(request, response){
        
        if(token){
         const username = token.payload.user
-        if(!username) return response.send('Parâmetros não informados').status(404)
+        if(!username) return response.status(404).send('Parâmetros não informados')
         
         if(username){
             const {category, title, description} = request.body
@@ -35,9 +35,9 @@ async function createJokeController(request, response){
           })
          
           if(create){
-              return response.send('Piada criada').status(201)
+              return response.status(201).send('Piada criada')
           }else{
-              return response.send('Ocorreu um erro criar piada').status(404)
+              return response.status(404).send('Ocorreu um erro criar piada')
           }
         }
 

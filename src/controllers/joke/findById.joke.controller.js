@@ -23,14 +23,14 @@ async function findByIdJokeController(request, response){
               })
     
             if(!joke){
-                return response.send('Piada não encontrada').status(404)
+                return response.status(404).send('Piada não encontrada')
             }
-            return response.json(joke).status(201)
+            return response.status(201).json(joke)
         }
        
         
     } catch (error) {
-            return response.json(error).status(500)
+            return response.status(500).json(error)
     }
 }
 
