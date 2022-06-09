@@ -19,6 +19,9 @@ async function deleteUserController(request, response){
         const deleteUser = await prisma.user.delete({
              where: {
                  username: username
+             },
+             include: {
+                 joke: true
              }
          }).finally(async () => {
              await prisma.$disconnect()
