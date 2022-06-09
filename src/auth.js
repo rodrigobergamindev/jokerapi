@@ -13,7 +13,7 @@ const auth = {
 
     async middlewareAuth(req, res, next) {
         const authToken = req.cookies.token
-        console.log(req)
+        console.log(req.cookies)
         if (authToken == undefined) {
             res.status(400).json({ error: "Token not found" })
             return
