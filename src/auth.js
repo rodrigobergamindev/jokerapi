@@ -6,7 +6,7 @@ const auth = {
     secret: "super secret",
     getToken(username) {
        
-        let token = jwt.sign({ user: username }, auth.secret, { expiresIn: 500 })
+        let token = jwt.sign({ user: username }, auth.secret, { expiresIn: 2592000 })
         
         return token
     },
@@ -50,6 +50,7 @@ const auth = {
 
         if (username === user.username  &&  password === user.password) {
             let token = auth.getToken(user.username)
+            
             res.cookie('token', token)
             res.status(200).json({ msg: "ok", token })
             return
