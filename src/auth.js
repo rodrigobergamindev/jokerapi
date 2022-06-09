@@ -50,7 +50,7 @@ const auth = {
 
         if (username === user.username  &&  password === user.password) {
             let token = auth.getToken(user.username)
-            res.cookie('token', token, {maxAge:2592000 * 1000 })
+            res.cookie('token', token)
             res.status(200).json({ msg: "ok", token })
             return
         } else {

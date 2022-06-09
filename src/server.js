@@ -6,7 +6,7 @@ import {router} from './routes/index'
 import auth from './auth'
 import cookieParser from 'cookie-parser'
 import swaggerUi from 'swagger-ui-express'
-import swaggerDocument from './swagger.json' assert {type: 'json'};
+import swaggerDocument from './swagger.json' 
 dotenv.config()
 
   
@@ -22,12 +22,6 @@ app.use(cors({
     "Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"
   ]
 })); 
-app.use((request, response, next) => {
-  response.setHeader('Access-Control-Allow-Credentials', true);
-  response.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-  response.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-  next()
-})
 app.use(cookieParser())
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
