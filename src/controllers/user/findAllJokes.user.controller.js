@@ -19,7 +19,7 @@ async function findAllJokesController(request, response){
                 }
             }
         })
-       console.log(jokes.joke)
+       
         return response.status(200).json(jokes.joke)
     } catch (error) {
             console.log(error)

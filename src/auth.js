@@ -13,6 +13,9 @@ const auth = {
 
     async middlewareAuth(req, res, next) {
         const authToken = req.cookies.token
+        const author = req.params.username
+
+        
         if (authToken == undefined) {
             res.status(400).json({ error: "Token not found" })
             return
@@ -26,10 +29,10 @@ const auth = {
         }
         jwt.verify(token, auth.secret, (err, tokenDecoded) => {
             if (err) {
-                res.status(400).json({ error: "INAVILID Token" })
+                res.status(400).json({ error: "INVALID Token" })
                 return
             }
-            console.log(tokenDecoded);
+            if(author !== tokenDecoded.user) return res.status(401).json({error: "Unauthorized"})
             next()
         })
     },
