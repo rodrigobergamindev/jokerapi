@@ -22,6 +22,7 @@ async function findAllJokesController(request, response){
        
         return response.status(200).json(jokes.joke)
     } catch (error) {
+            console.log(error)
             return response.status(500).json(error)
     }
 }
