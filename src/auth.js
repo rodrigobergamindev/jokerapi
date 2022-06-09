@@ -13,7 +13,6 @@ const auth = {
 
     async middlewareAuth(req, res, next) {
         const authToken = req.cookies.token
-        console.log(req.cookies)
         if (authToken == undefined) {
             res.status(400).json({ error: "Token not found" })
             return
@@ -52,7 +51,7 @@ const auth = {
         if (username === user.username  &&  password === user.password) {
             let token = auth.getToken(user.username)
             res.cookie('token', token, { sameSite: 'none', secure: true})
-            res.status(200).json({ msg: "ok", token, username })
+            res.status(200).json({ msg: "ok", username })
             return
         } else {
             res.status(400).json({ error: "Invalid user/password" })
