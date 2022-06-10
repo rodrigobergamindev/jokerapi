@@ -3,7 +3,7 @@ import prisma from '../../db/prisma'
 import auth from '../../auth'
 
 async function createUserController(request, response){
-
+    
     try {
        const username = request.body.username
        const password = request.body.password

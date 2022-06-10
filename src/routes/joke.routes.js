@@ -8,12 +8,12 @@ import auth from '../auth'
 
 const jokeRoutes = Router()
 
-jokeRoutes.post("/:username", auth.middlewareAuth, (request, response) => {
+jokeRoutes.post("/:username", auth.middlewareAuthentication, (request, response) => {
     
     return createJokeController(request, response)
 })
 
-jokeRoutes.delete("/:username/:id", auth.middlewareAuth, (request, response) => {
+jokeRoutes.delete("/:username/:id", auth.middlewareAuthentication, (request, response) => {
     
     return deleteJokeController(request, response)
 })

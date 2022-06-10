@@ -24,9 +24,8 @@ app.use(cors({
 app.use(cookieParser())
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-app.use(router)
 app.post('/auth', auth.authentication)
-
+app.use(router)
 const PORT = process.env.PORT || 80
 
 app.listen(PORT, function() {

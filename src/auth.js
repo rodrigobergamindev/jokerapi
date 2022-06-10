@@ -11,10 +11,10 @@ const auth = {
         return token
     },
 
-    async middlewareAuth(req, res, next) {
+    async middlewareAuthentication(req, res, next) {
         const authToken = req.cookies.token
         const author = req.params.username
-      
+       
         
         if (authToken == undefined) {
             res.status(400).json({ error: "Token not found" })

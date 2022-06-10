@@ -9,20 +9,21 @@ import { findAllJokesController } from '../controllers/user/findAllJokes.user.co
 const userRoutes = Router()
 
 userRoutes.post("/", (request, response) => {
-    
+
     return createUserController(request,response)
 })
 
-userRoutes.delete("/:username", auth.middlewareAuth, (request, response) => {
+userRoutes.delete("/:username", auth.middlewareAuthentication, (request, response) => {
     
     return deleteUserController(request, response)
 })
 
 
-userRoutes.get("/:username/jokes",auth.middlewareAuth, (request, response) => {
+userRoutes.get("/:username/jokes", auth.middlewareAuthentication, (request, response) => {
     
     return findAllJokesController(request, response)
 })
+
 
 
 
