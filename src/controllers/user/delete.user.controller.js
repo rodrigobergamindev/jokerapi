@@ -29,7 +29,7 @@ async function deleteUserController(request, response){
 
         if(deleteUser){
             response.clearCookie('token')
-            return response.status(200).send('Usuário deletado')
+            return response.status(204).send('Usuário deletado')
         }
        }
          
