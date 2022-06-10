@@ -25,6 +25,7 @@ app.use(cookieParser())
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.post('/auth', auth.authentication)
+app.post('/logout', auth.logout)
 app.use(router)
 const PORT = process.env.PORT || 80
 

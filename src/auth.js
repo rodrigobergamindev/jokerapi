@@ -62,6 +62,17 @@ const auth = {
             res.status(400).json({ error: "Invalid user/password" })
             return
         }
+    },
+
+    async logout(req, res) {
+        const token = req.cookies.token
+       
+        if(!token) return res.status(400).json({error: "User not sign in"})
+
+        if (token) {
+           res.clearCookie('token')
+           return res.status(200).json({msg: 'Logout'})
+        } 
     }
 }
 
