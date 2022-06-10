@@ -42,7 +42,7 @@ async function deleteJokeController(request, response){
           })
 
         if(deleteJoke){
-            return response.status(201).send('Piada deletada')
+            return response.status(204).send('Piada deletada')
         }
     
     } catch (error) {

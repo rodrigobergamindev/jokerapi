@@ -32,6 +32,7 @@ const auth = {
                 res.status(400).json({ error: "INVALID Token" })
                 return
             }
+            
             if(author !== tokenDecoded.user) return res.status(401).json({error: "Unauthorized"})
             next()
         })

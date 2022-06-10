@@ -14,6 +14,7 @@ async function createJokeController(request, response){
        
        if(token){
         const username = token.payload.user
+        
         if(!username) return response.status(404).send('Parâmetros não informados')
         
         if(username){
