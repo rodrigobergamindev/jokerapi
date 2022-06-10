@@ -8,7 +8,7 @@ import auth from '../auth'
 
 const jokeRoutes = Router()
 
-jokeRoutes.post("/", (request, response) => {
+jokeRoutes.post("/:username", auth.middlewareAuth, (request, response) => {
     
     return createJokeController(request, response)
 })
