@@ -14,7 +14,7 @@ const auth = {
     async middlewareAuth(req, res, next) {
         const authToken = req.cookies.token
         const author = req.params.username
-
+      
         
         if (authToken == undefined) {
             res.status(400).json({ error: "Token not found" })
@@ -32,7 +32,8 @@ const auth = {
                 res.status(400).json({ error: "INVALID Token" })
                 return
             }
-            
+            console.log(tokenDecoded.user)
+            console.log(req.params)
             if(author !== tokenDecoded.user) return res.status(401).json({error: "Unauthorized"})
             next()
         })
