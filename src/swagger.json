@@ -186,11 +186,18 @@
                 }
             }
         },
-        "/":{
+        "/jokes/{username}":{
             "post": {
                 "tags": ["Jokes"],
                 "summary": "Create a new joke",
                 "description": "Create a new joke",
+                "parameters": [
+                    {
+                        "name":"username",
+                        "in":"path",
+                        "type":"string"
+                    }
+                ],
                 "requestBody": {
                     "content" : {
                         "application/json": {
@@ -225,7 +232,9 @@
                         "description": "Failure"
                     }
                 }
-            },
+            }
+        },
+        "/jokes": {
             "get": {
                 "tags": ["Jokes"],
                 "summary": "List all jokes",
@@ -267,27 +276,7 @@
                 }
             }
         },
-        "/{id}": {
-            "delete": {
-                "tags": ["Jokes"],
-                "summary": "Delete an joke",
-                "description": "Delete an joke",
-                "parameters":[
-                    {
-                        "name":"id",
-                        "in":"path",
-                        "type":"string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success"
-                        },
-                    "404": {
-                        "description": "Joke not found"
-                    }
-                }
-            },
+        "/jokes/{id}": {
             "get": {
                 "tags": ["Jokes"],
                 "summary": "Get joke by id",
@@ -339,6 +328,33 @@
 
                             }
                         }
+                    }
+                }
+            }
+        },
+        "/jokes/{username}/{id}": {
+            "delete": {
+                "tags": ["Jokes"],
+                "summary": "Delete an joke",
+                "description": "Delete an joke",
+                "parameters":[
+                    {
+                        "name":"username",
+                        "in":"path",
+                        "type":"string"
+                    },
+                    {
+                        "name":"id",
+                        "in":"path",
+                        "type":"string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                        },
+                    "404": {
+                        "description": "Joke not found"
                     }
                 }
             }
