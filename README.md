@@ -1,0 +1,1 @@
+Documentação disponível em: https://jokerapi-usjt.herokuapp.com/api-docs
